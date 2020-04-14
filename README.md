@@ -1,4 +1,13 @@
 # PhxBlog
+---
+Stack: 
+ - Elixir 1.10.2
+ - Phoenix 1.4.16
+ - PG
+ - node
+
+
+
 
 To start your Phoenix server:
 
