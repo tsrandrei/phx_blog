@@ -5,9 +5,7 @@ Stack:
  - Phoenix 1.4.16
  - PG
  - node
-
-
-
+---
 
 To start your Phoenix server:
 
