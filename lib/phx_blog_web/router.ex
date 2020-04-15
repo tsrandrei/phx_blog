@@ -16,11 +16,13 @@ defmodule PhxBlogWeb.Router do
   scope "/", PhxBlogWeb do
     pipe_through :browser
 
+    resources "/users", UserController
+    resources "/posts", PostController
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PhxBlogWeb do
-  #   pipe_through :api
-  # end
+   # Other scopes may use custom stacks.
+   scope "/api", PhxBlogWeb do
+     pipe_through :api
+   end
 end
