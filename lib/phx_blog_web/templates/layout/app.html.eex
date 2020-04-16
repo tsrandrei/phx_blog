@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title><%= assigns[:page_title] || "PhxBlog · Phoenix Framework" %></title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <%= csrf_meta_tag() %>
-  </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><%= link "Posts", to: Routes.post_path(@conn, :index) %></li>
-            <li><%= link "Users", to: Routes.user_path(@conn, :index) %></li>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= assigns[:page_title] || "PhxBlog · Phoenix Framework" %></title>
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  <%= csrf_meta_tag() %>
+</head>
+<body class="bg-gray-900 ">
+  <div class="flex mb-4 h-screen">
+    <div class="w-1/2">
+      <div class="bg-gray-900 min-h-screen text-gray-500 leading-relaxed max-w-5xl px-2 sm:pr-40 sm:pl-20 py-8">
+        <div class="flex items-center justify-between flex-wrap mb-10">
+          <ul class="flex">
+            <li class="mr-6"><%= link "Posts", to: Routes.post_path(@conn, :index), class: "text-white hover:text-gray-300" %></li>
+            <li class="mr-6"><%= link "Users", to: Routes.user_path(@conn, :index), class: "text-white hover:text-gray-300" %></li>
           </ul>
-        </nav>
-        <%= link to: Routes.page_path(@conn, :index) do %>
-            <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" style="width:200px;" alt="Phoenix Framework Logo"/>
-        <% end %>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+          <div class="logo">
+            <%= link to: Routes.page_path(@conn, :index) do %>
+              <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" style="width:200px;" alt="Phoenix Framework Logo"/>
+            <% end %>
+          </div>
+        </div>
+        <main role="main" class="container">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+      </div>
+    </div>
+    <div class="w-1/2">
+      <img src="<%= Routes.static_path(@conn, "/images/david-tostado-Uc0BhvZ7f2g-unsplash.jpg") %>">
+    </div>
+  </div>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+</body>
 </html>
