@@ -4,6 +4,8 @@ defmodule PhxBlogWeb.PostController do
   alias PhxBlog.Content
   alias PhxBlog.Content.Post
 
+  # plug :put_layout, "backoffice.html"
+
   def index(conn, _params) do
     posts = Content.list_posts()
     render(conn, "index.html", posts: posts)
@@ -19,7 +21,7 @@ defmodule PhxBlogWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: Routes.post_path(conn, :show, post))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +46,7 @@ defmodule PhxBlogWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: Routes.post_path(conn, :show, post))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset)

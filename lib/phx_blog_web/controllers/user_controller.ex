@@ -11,7 +11,7 @@ defmodule PhxBlogWeb.UserController do
 
   def new(conn, _params) do
     changeset = Accounts.change_user(%User{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, show_delete: false)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -19,7 +19,7 @@ defmodule PhxBlogWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> redirect(to: Routes.user_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -34,7 +34,7 @@ defmodule PhxBlogWeb.UserController do
   def edit(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
     changeset = Accounts.change_user(user)
-    render(conn, "edit.html", user: user, changeset: changeset)
+    render(conn, "edit.html", user: user, changeset: changeset, show_delete: true)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
@@ -44,7 +44,7 @@ defmodule PhxBlogWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> redirect(to: Routes.user_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)

@@ -1,10 +1,10 @@
-/* This file is for your main application css. */
 @tailwind base;
 
 @tailwind components;
-
-/* Put your custom components here */
+@import url("buttons.css");
+@import url("form.css");
+@import url("nprogress.css");
+@import url("flash.css");
 
 @tailwind utilities;
-
-/* Put your custom utilities here */
+@import url("transitions.scss");

@@ -1,19 +1,31 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
+<div class="bg-white rounded shadow overflow-hidden max-w-3xl">
+  <%= form_for @changeset, @action, fn f -> %>
+    <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
+    <% end %>
+
+    <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+      <div class="pr-6 pb-8 w-full lg:w-1/2">
+        <%= label f, :name, class: "form-label" %>
+        <%= text_input f, :name, class: "form-input" %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <div class="pr-6 pb-8 w-full lg:w-1/2">
+        <%= label f, :username, class: "form-label" %>
+        <%= text_input f, :username, class: "form-input" %>
+        <%= error_tag f, :username %>
+      </div>
+    </div>
+
+    <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
+      <%= if @conn.assigns[:show_delete] == true do %>
+        <%#= button "Delete User", to: Routes.user_path(@conn, :delete, @conn.assigns[:user]), method: "delete", class: "text-red-600 hover:underline" %>
+        <%= button "Delete User", to: Routes.user_path(@conn, :delete, @conn.assigns[:user]), class: "text-red-600 hover:underline" %>
+      <% end %>
+      <%= submit "Save", class: "flex items-center btn-indigo ml-auto" %>
+    </div>
   <% end %>
-
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
-
-  <%= label f, :username %>
-  <%= text_input f, :username %>
-  <%= error_tag f, :username %>
-
-  <div>
-    <%= submit "Save" %>
-  </div>
-<% end %>
+</div>

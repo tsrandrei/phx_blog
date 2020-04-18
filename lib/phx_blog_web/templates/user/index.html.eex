@@ -1,28 +1,47 @@
-<h1>Listing Users</h1>
+<h1 class="mb-8 font-bold text-3xl">Contacts</h1>
+<div class="mb-6 flex justify-between items-center">
+  <div class="flex items-center w-full max-w-md mr-4">
+  </div>
+  <%= link "New User", to: Routes.user_path(@conn, :new), class: "btn-indigo" %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Username</th>
 
-      <th></th>
+<div class="bg-white rounded shadow overflow-x-auto">
+  <table class="w-full whitespace-no-wrap">
+    <tr class="text-left font-bold">
+      <th class="px-6 pt-6 pb-4">Name</th>
+      <th class="px-6 pt-6 pb-4">Organization</th>
+      <th class="px-6 pt-6 pb-4">City</th>
+      <th colspan="2" class="px-6 pt-6 pb-4">Phone</th>
     </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.username %></td>
-
-      <td>
-        <span><%= link "Show", to: Routes.user_path(@conn, :show, user) %></span>
-        <span><%= link "Edit", to: Routes.user_path(@conn, :edit, user) %></span>
-        <span><%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New User", to: Routes.user_path(@conn, :new) %></span>
+    <%= for user <- @users do %>
+      <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
+        <td class="border-t">
+          <%= link to: Routes.user_path(@conn, :edit, user), class: "px-6 py-4 flex items-center focus:text-indigo-500" do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td class="border-t">
+          <%= link to: Routes.user_path(@conn, :edit, user), class: "px-6 py-4 flex items-center", tabindex: "-1" do %>
+            <%= user.username %>
+          <% end %>
+        </td>
+        <td class="border-t">
+          <%= link to: Routes.user_path(@conn, :edit, user), class: "px-6 py-4 flex items-center", tabindex: "-1" do %>
+            <%= user.username %>
+          <% end %>
+        </td>
+        <td class="border-t">
+          <%= link to: Routes.user_path(@conn, :edit, user), class: "px-6 py-4 flex items-center", tabindex: "-1" do %>
+            <%= user.username %>
+          <% end %>
+        </td>
+        <td class="border-t w-px">
+          <%= link to: Routes.user_path(@conn, :edit, user), class: "px-4 flex items-center", tabindex: "-1" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="block w-6 h-6 fill-gray-400"><polygon points="12.95 10.707 13.657 10 8 4.343 6.586 5.757 10.828 10 6.586 14.243 8 15.657 12.95 10.707"></polygon></svg>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

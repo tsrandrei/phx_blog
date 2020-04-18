@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-200">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= assigns[:page_title] || "PhxBlog · Phoenix Framework" %></title>
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  <%= csrf_meta_tag() %>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+</head>
+<body class="font-sans leading-none text-gray-700 antialiased">
+  <div class="flex flex-col">
+    <div class="h-screen flex flex-col">
+      <%= render PhxBlogWeb.SharedView, "backoffice_topbar.html", assigns %>
+      <div class="flex flex-grow overflow-hidden">
+        <%= render PhxBlogWeb.SharedView, "backoffice_sidebar.html", assigns %>
+        <div scroll-region="" class="flex-1 px-4 py-8 md:p-12 overflow-y-auto">
+          <div class="mt-6">
+            <%= get_flash(@conn, :info) %>
+            <%= render @view_module, @view_template, assigns %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
