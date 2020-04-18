@@ -14,8 +14,8 @@
       <div class="bg-gray-900 min-h-screen text-gray-500 leading-relaxed max-w-5xl px-2 sm:pr-40 sm:pl-20 py-8">
         <div class="flex items-center justify-between flex-wrap mb-10">
           <ul class="flex">
-            <li class="mr-6"><%= link "Posts", to: Routes.post_path(@conn, :index), class: "text-white hover:text-gray-300" %></li>
-            <li class="mr-6"><%= link "Users", to: Routes.user_path(@conn, :index), class: "text-white hover:text-gray-300" %></li>
+            <li class="mr-6"> - </li>
+            <li class="mr-6"> - </li>
           </ul>
           <div class="logo">
             <%= link to: Routes.page_path(@conn, :index) do %>

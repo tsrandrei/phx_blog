@@ -13,12 +13,23 @@ defmodule PhxBlogWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :backoffice do
+    plug :put_layout, {PhxBlogWeb.LayoutView, "backoffice.html"}
+  end
+
+
   scope "/", PhxBlogWeb do
     pipe_through :browser
 
+    get "/backoffice", BackofficeController, :index
+    get "/", PageController, :index
+  end
+
+  scope "/backoffice", PhxBlogWeb do
+    pipe_through [:browser, :backoffice]
+
     resources "/users", UserController
     resources "/posts", PostController
-    get "/", PageController, :index
   end
 
    # Other scopes may use custom stacks.

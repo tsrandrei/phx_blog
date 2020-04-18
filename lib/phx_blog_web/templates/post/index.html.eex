@@ -1,31 +1,47 @@
-<h1>Listing Posts</h1>
+<h1 class="mb-8 font-bold text-3xl">Posts</h1>
+<div class="mb-6 flex justify-between items-center">
+  <div class="flex items-center w-full max-w-md mr-4">
+  </div>
+  <%= link "New Post", to: Routes.post_path(@conn, :new), class: "btn-indigo" %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Subtitle</th>
-      <th>Author</th>
-      <th>Body</th>
 
-      <th></th>
+<div class="bg-white rounded shadow overflow-x-auto">
+  <table class="w-full whitespace-no-wrap">
+    <tr class="text-left font-bold">
+      <th class="px-6 pt-6 pb-4">Title</th>
+      <th class="px-6 pt-6 pb-4">Subtitle</th>
+      <th class="px-6 pt-6 pb-4">Author</th>
+      <th colspan="2" class="px-6 pt-6 pb-4">Body</th>
     </tr>
-  </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.subtitle %></td>
-      <td><%= post.author %></td>
-      <td><%= post.body %></td>
-      <td>
-        <span><%= link "Show", to: Routes.post_path(@conn, :show, post) %></span>
-        <span><%= link "Edit", to: Routes.post_path(@conn, :edit, post) %></span>
-        <span><%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
+    <%= for post <- @posts do %>
+    <tr  class="hover:bg-gray-100 focus-within:bg-gray-100">
+      <td class="border-t">
+        <%= link to: Routes.post_path(@conn, :edit, post), class: "px-6 py-4 flex items-center focus:text-indigo-500" do %>
+        <%= post.title %>
+        <% end %>
+      </td>
+      <td class="border-t">
+        <%= link to: Routes.post_path(@conn, :edit, post), class: "px-6 py-4 flex items-center focus:text-indigo-500" do %>
+        <%= post.subtitle %>
+        <% end %>
+      </td>
+      <td class="border-t">
+        <%= link to: Routes.post_path(@conn, :edit, post), class: "px-6 py-4 flex items-center focus:text-indigo-500" do %>
+        <%= post.author %>
+        <% end %>
+      </td>
+      <td class="border-t">
+        <%= link to: Routes.post_path(@conn, :edit, post), class: "px-6 py-4 flex items-center focus:text-indigo-500" do %>
+        <%= post.body %>
+        <% end %>
+      </td>
+      <td class="border-t w-px">
+        <%= link to: Routes.post_path(@conn, :edit, post), class: "px-4 flex items-center", tabindex: "-1" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="block w-6 h-6 fill-gray-400"><polygon points="12.95 10.707 13.657 10 8 4.343 6.586 5.757 10.828 10 6.586 14.243 8 15.657 12.95 10.707"></polygon></svg>
+        <% end %>
       </td>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>

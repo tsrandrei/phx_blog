@@ -1,11 +1,13 @@
 # PhxBlog
 ---
-Stack: 
+Stack:
  - Elixir 1.10.2
  - Phoenix 1.4.16
  - PG
  - node
 ---
+![Alt text](/../master/git_screenshots/backend.png?raw=true "Backend")
+![Alt text](/../master/git_screenshots/frontend.png?raw=true "Frontends")
 
 To start your Phoenix server:
 

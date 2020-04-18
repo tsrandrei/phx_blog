@@ -1,27 +1,37 @@
-<%= form_for @changeset, @action, fn f -> %>
+<div class="bg-white rounded shadow overflow-hidden max-w-3xl">
+  <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
+  <div class="alert alert-danger">
+    <p>Oops, something went wrong! Please check the errors below.</p>
+  </div>
   <% end %>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
+  <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
+    <div class="pr-6 pb-8 w-full lg:w-1/2">
+      <%= label f, :title, class: "form-label" %>
+      <%= text_input f, :title, class: "form-input" %>
+      <%= error_tag f, :title %>
+    </div>
 
-  <%= label f, :subtitle %>
-  <%= text_input f, :subtitle %>
-  <%= error_tag f, :subtitle %>
-
-  <%= label f, :author %>
-  <%= text_input f, :author %>
-  <%= error_tag f, :author %>
-
-  <%= label f, :body %>
-  <%= text_input f, :body %>
-  <%= error_tag f, :body %>
-
-  <div>
-    <%= submit "Save" %>
+    <div class="pr-6 pb-8 w-full lg:w-1/2">
+      <%= label f, :subtitle, class: "form-label" %>
+      <%= text_input f, :subtitle, class: "form-input" %>
+      <%= error_tag f, :subtitle %>
+    </div>
+    <div class="pr-6 pb-8 w-full lg:w-1/2">
+      <%= label f, :author, class: "form-label" %>
+      <%= text_input f, :author, class: "form-input" %>
+      <%= error_tag f, :author %>
+    </div>
+    <div class="pr-6 pb-8 w-full lg:w-1/2">
+      <%= label f, :body, class: "form-label" %>
+      <%= text_input f, :body, class: "form-input" %>
+      <%= error_tag f, :body %>
+    </div>
   </div>
-<% end %>
+
+  <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
+    <%= submit "Save", class: "flex items-center btn-indigo ml-auto" %>
+  </div>
+  <% end %>
+</div>
