@@ -1,10 +1,13 @@
 defmodule PhxBlog.Accounts.User do
   use Ecto.Schema
+  use Pow.Ecto.Schema
   import Ecto.Changeset
 
   schema "users" do
-    field :name, :string
+    field :first_name, :string
+    field :last_name, :string
     field :username, :string
+    pow_user_fields()
 
     timestamps()
   end
@@ -12,8 +15,8 @@ defmodule PhxBlog.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :username])
-    |> validate_required([:name, :username])
-    |> unique_constraint(:username)
+    |> cast(attrs, [:first_name, :last_name, :username, :email, :password_hash])
+    |> validate_required([:email, :password_hash])
+    |> unique_constraint([:email, :username])
   end
 end

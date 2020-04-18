@@ -5,6 +5,8 @@
 @import url("form.css");
 @import url("nprogress.css");
 @import url("flash.css");
+@import url("dropdown.css");
+
 
 @tailwind utilities;
 @import url("transitions.scss");

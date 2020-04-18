@@ -1,5 +1,6 @@
 defmodule PhxBlogWeb.Router do
   use PhxBlogWeb, :router
+  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -17,17 +18,32 @@ defmodule PhxBlogWeb.Router do
     plug :put_layout, {PhxBlogWeb.LayoutView, "backoffice.html"}
   end
 
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
+
+  pipeline :pow_layout do
+    plug :put_layout, {PhxBlogWeb.LayoutView, "login.html"}
+  end
+
+
+  scope "/backoffice" do
+    pipe_through [:browser, :pow_layout]
+
+    pow_routes()
+  end
 
   scope "/", PhxBlogWeb do
     pipe_through :browser
 
-    get "/backoffice", BackofficeController, :index
     get "/", PageController, :index
   end
 
   scope "/backoffice", PhxBlogWeb do
-    pipe_through [:browser, :backoffice]
+    pipe_through [:browser, :backoffice, :protected]
 
+    get "/", BackofficeController, :index
     resources "/users", UserController
     resources "/posts", PostController
   end
