@@ -1,0 +1,39 @@
+<div class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden">
+
+<%= form_for @changeset, @action, [as: :user],fn f -> %>
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+  <p>Oops, something went wrong! Please check the errors below.</p>
+</div>
+<% end %>
+<div class="px-10 py-12">
+  <h1 class="text-center font-bold text-3xl">Sign in</h1>
+  <div class="mx-auto mt-6 w-24 border-b-2"></div>
+  <div class="mt-10">
+    <%= label f, Pow.Ecto.Schema.user_id_field(@changeset), class: "form-lable" %>
+    <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "form-input" %>
+    <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
+
+    <!-- <label for="text-input-5" class="form-label">Email:</label>
+    <input id="text-input-5" type="email" autofocus="autofocus" autocapitalize="off" class="form-input"> -->
+  </div>
+  <div class="mt-6">
+    <%= label f, :password, class: "form-label" %>
+    <%= password_input f, :password, class: "form-input" %>
+    <%= error_tag f, :password %>
+
+    <!-- <label for="text-input-6" class="form-label">Password:</label>
+    <input id="text-input-6" type="password" class="form-input"> -->
+  </div>
+  <label for="remember" class="mt-6 select-none flex items-center">
+    <input id="remember" type="checkbox" class="mr-1">
+    <span class="text-sm">Remember Me</span>
+  </label>
+</div>
+<div class="px-10 py-4 bg-gray-100 border-t border-gray-200 flex justify-between items-center">
+  <%= link "Register", to: Routes.pow_registration_path(@conn, :new), class: "hover:underline" %>
+  <%= submit "Sign in", class: "flex items-center btn-indigo"%>
+  <!-- <button class="flex items-center btn-indigo" type="submit"></button> -->
+</div>
+<% end %>
+</div>

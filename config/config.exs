@@ -10,6 +10,11 @@ use Mix.Config
 config :phx_blog,
   ecto_repos: [PhxBlog.Repo]
 
+config :phx_blog, :pow,
+    user: PhxBlog.Accounts.User,
+    repo: PhxBlog.Repo,
+    web_module: PhxBlogWeb
+
 # Configures the endpoint
 config :phx_blog, PhxBlogWeb.Endpoint,
   url: [host: "localhost"],
